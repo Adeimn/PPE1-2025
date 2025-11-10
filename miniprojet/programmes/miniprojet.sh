@@ -12,6 +12,14 @@ fi
 
 i=1;
 
+echo -e "<html>\n
+<head>\n
+<title>miniprojet</title>\n
+<meta charset=\"UTF-8\">\n
+</head>\n
+<body>\n
+<table>\n"
+
 while read -r line;
 do
 	# le fichier dump est surtout là pour rediriger le contenu de l'URL dans ce dernier
@@ -32,10 +40,15 @@ do
         word_count="null"
     fi
     
-    echo -e "${i}\t${line}\t${http_code}\t${encoding}\t${word_count}";
+    echo -e "<tr><td>${i}</td><td>${line}</td><td>${http_code}</td><td>${encoding}</td><td>${word_count}</td></tr>"
     
     ((i++));
+
+
 done < "$1";
+echo -e "\n</table>\n
+</body>\n
+</html>";
 
 
 # 1) cat serait plus adapté pour juste afficher le contenu d'un fichier. Ici on veut lire ligne par ligne.
